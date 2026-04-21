@@ -34,22 +34,22 @@ flowchart LR
   subgraph Streaming
     P[Kafka Producer]
     K[(Kafka Topics)]
-    C[Kafka Consumer<br/>Quality + Anomaly + Metrics]
+    C["Kafka Consumer<br/>Quality + Anomaly + Metrics"]
   end
 
   subgraph Processing
-    SP[Spark Jobs<br/>(batch/transform/analytics)]
-    AF[Airflow DAGs<br/>(orchestration)]
+    SP["Spark Jobs<br/>(batch/transform/analytics)"]
+    AF["Airflow DAGs<br/>(orchestration)"]
   end
 
   subgraph Storage
-    RAW[(Raw Zone<br/>JSON)]
-    PROC[(Processed Zone<br/>JSON/Parquet)]
-    MON[(Monitoring<br/>JSONL Metrics)]
+    RAW["(Raw Zone<br/>JSON)"]
+    PROC["(Processed Zone<br/>JSON/Parquet)"]
+    MON["(Monitoring<br/>JSONL Metrics)"]
   end
 
   subgraph Serving
-    DASH[Dashboard<br/>(Flask/Dash/Streamlit)]
+    DASH["Dashboard<br/>(Flask/Dash/Streamlit)"]
   end
 
   WAPI --> P
