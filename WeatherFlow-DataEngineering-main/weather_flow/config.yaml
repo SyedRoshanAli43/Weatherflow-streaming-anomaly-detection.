@@ -1,0 +1,80 @@
+project:
+  name: WeatherFlow
+  timezone: UTC
+
+ingestion:
+  # How often the producer fetches from external APIs (seconds)
+  interval_seconds: 300
+
+sources:
+  weatherapi:
+    # Set via env var WEATHERAPI_KEY (recommended). Do not hardcode secrets here.
+    base_url: "https://api.weatherapi.com/v1/current.json"
+  openweather:
+    # Set via env var OPENWEATHER_API_KEY (recommended). Do not hardcode secrets here.
+    base_url: "https://api.openweathermap.org/data/2.5/weather"
+
+cities:
+  - name: "New York"
+    country: "US"
+  - name: "London"
+    country: "UK"
+  - name: "Tokyo"
+    country: "Japan"
+  - name: "Berlin"
+    country: "Germany"
+  - name: "Mexico City"
+    country: "Mexico"
+
+kafka:
+  bootstrap_servers:
+    - "kafka:9092"
+  topics:
+    raw: "weather-raw-data"
+    processed: "weather-processed-data"
+
+storage:
+  data_dir: "data"
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  monitoring_dir: "data/monitoring"
+
+monitoring:
+  metrics_file: "data/monitoring/stream_metrics.jsonl"
+  quality_events_file: "data/monitoring/data_quality_events.jsonl"
+  anomaly_events_file: "data/monitoring/anomaly_events.jsonl"
+  log_every_n_messages: 25
+
+data_quality:
+  # Required fields expected in every event
+  required_fields:
+    - "timestamp"
+    - "source"
+    - "city"
+    - "country"
+    - "temperature"
+    - "humidity"
+    - "pressure"
+    - "wind_speed"
+  # Simple physical plausibility bounds (can be tuned per region)
+  bounds:
+    temperature_c: {min: -60.0, max: 60.0}
+    humidity_pct: {min: 0.0, max: 100.0}
+    pressure_hpa: {min: 870.0, max: 1085.0}
+    wind_speed_mps: {min: 0.0, max: 75.0}
+
+anomaly_detection:
+  method: "zscore"     # "zscore" or "isolation_forest" (optional; requires scikit-learn)
+  features:
+    - "temperature"
+    - "humidity"
+    - "pressure"
+    - "wind_speed"
+  zscore:
+    window_size: 240      # rolling window per (city, source)
+    threshold: 3.5
+    min_samples: 30
+  isolation_forest:
+    enabled: false
+    contamination: 0.01
+    min_samples: 200

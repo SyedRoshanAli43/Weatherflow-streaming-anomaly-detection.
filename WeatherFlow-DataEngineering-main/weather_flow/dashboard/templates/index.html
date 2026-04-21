@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            // Completely disable console warnings and errors in production mode
+            // This is the most aggressive approach to suppress React warnings
+            (function() {
+                // Create empty functions for all console methods
+                const noop = function() {};
+                
+                // Store original console for potential restoration
+                window._originalConsole = {
+                    log: console.log,
+                    warn: console.warn,
+                    error: console.error,
+                    info: console.info,
+                    debug: console.debug
+                };
+                
+                // Replace all console methods with filtered versions
+                console.warn = function() {
+                    // Only suppress React and Warning messages
+                    if (arguments[0] && typeof arguments[0] === 'string') {
+                        if (arguments[0].includes('Warning:') || 
+                            arguments[0].includes('React') ||
+                            arguments[0].includes('defaultProps')) {
+                            return; // Suppress
+                        }
+                    }
+                    return window._originalConsole.warn.apply(console, arguments);
+                };
+                
+                console.error = function() {
+                    // Only suppress React and Warning messages
+                    if (arguments[0] && typeof arguments[0] === 'string') {
+                        if (arguments[0].includes('Warning:') || 
+                            arguments[0].includes('React') ||
+                            arguments[0].includes('defaultProps')) {
+                            return; // Suppress
+                        }
+                    }
+                    return window._originalConsole.error.apply(console, arguments);
+                };
+                
+                // Add a utility function to restore console if needed
+                window.restoreConsole = function() {
+                    Object.keys(window._originalConsole).forEach(key => {
+                        console[key] = window._originalConsole[key];
+                    });
+                };
+            })();
+            
+            // Also silence React development warnings
+            window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = { isDisabled: true };
+        </script>
+        
+        {%metas%}
+        <title>WeatherFlow Dashboard</title>
+        {%favicon%}
+        {%css%}
+        
+        <!-- Custom Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        
+        <style>
+            /* Additional inline styles for critical rendering */
+            body {
+                font-family: 'Poppins', sans-serif;
+                background-color: #f8f9fa;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        {%app_entry%}
+        <footer>
+            {%config%}
+            {%scripts%}
+            {%renderer%}
+        </footer>
+    </body>
+</html>

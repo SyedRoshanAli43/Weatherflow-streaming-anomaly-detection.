@@ -1,0 +1,21 @@
+# Keep the repo clean at the GitHub root level
+.env
+__pycache__/
+*.py[cod]
+.Python
+.venv/
+venv/
+.idea/
+.vscode/
+*.log
+Thumbs.db
+.DS_Store
+sample_weather_data.json
+weather_data_summary.csv
+
+# Ignore data/outputs anywhere in the project
+**/data/raw/
+**/data/processed/
+**/data/monitoring/
+**/data/reports/
+

@@ -1,0 +1,38 @@
+# API and Requests
+requests==2.31.0
+python-dotenv==1.0.0
+
+# Kafka
+kafka-python==2.0.2
+confluent-kafka==2.2.0
+
+# Spark
+pyspark==3.4.1
+pyarrow==13.0.0
+
+# Airflow
+apache-airflow==2.7.1
+apache-airflow-providers-apache-spark==4.1.4
+apache-airflow-providers-apache-kafka==1.1.0
+
+# Data Processing
+pandas==2.0.3
+numpy==1.24.4
+
+# Dashboard and Visualization
+streamlit==1.32.0
+flask==2.2.5
+dash==2.9.3
+plotly==5.14.1
+matplotlib==3.7.2
+
+# Database
+sqlalchemy==1.4.50
+pymongo==4.5.0
+
+# Testing
+pytest==7.4.2
+
+# Utilities
+python-dateutil==2.8.2
+pyyaml==6.0.1

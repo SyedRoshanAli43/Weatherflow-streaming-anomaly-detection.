@@ -1,0 +1,25 @@
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy requirements file
+COPY ../requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir kafka-python==2.0.2 requests==2.28.1
+
+# Copy application code
+COPY .. /app/
+
+# Create necessary directories
+RUN mkdir -p /app/data/processed
+
+# Set environment variables explicitly
+ENV KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+ENV PYTHONPATH=/app
+
+# Docker's built-in DNS will handle hostname resolution
+
+# Entry point will be provided by docker-compose command

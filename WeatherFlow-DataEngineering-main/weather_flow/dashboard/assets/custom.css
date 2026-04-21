@@ -1,0 +1,131 @@
+/* WeatherFlow Dashboard Custom Styles */
+
+/* Global Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+  color: #343a40;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Styles */
+.header {
+  background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+  padding: 20px 30px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+.header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.header p {
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+/* Card Styles */
+.card {
+  background-color: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 25px;
+}
+
+.card-header {
+  margin-bottom: 15px;
+  color: #0d6efd;
+  border-bottom: 2px solid #dee2e6;
+  padding-bottom: 10px;
+}
+
+/* Form Elements */
+.form-label {
+  font-weight: 500;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+  padding: 8px 12px;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+/* Chart Containers */
+.chart-container {
+  height: 400px;
+  width: 100%;
+}
+
+/* Footer Styles */
+.footer {
+  padding: 15px;
+  border-top: 1px solid #dee2e6;
+  margin-top: 10px;
+  text-align: center;
+  color: #6c757d;
+}
+
+.footer a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .split-container {
+    flex-direction: column;
+  }
+  
+  .split-item {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 20px;
+  }
+}
+
+/* Animation for loading states */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite ease-in-out;
+}
