@@ -1,4 +1,4 @@
-# WeatherFlow — Real-Time Weather Data Engineering + Streaming Anomaly Detection
+### ***WeatherFlow — Real-Time Weather Data Engineering + Streaming Anomaly Detection***
 
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)
 ![Kafka](https://img.shields.io/badge/Apache%20Kafka-streaming-black)
